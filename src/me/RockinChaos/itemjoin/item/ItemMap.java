@@ -4084,7 +4084,7 @@ public class ItemMap {
 		if (this.customName != null && !this.customName.equalsIgnoreCase(ItemHandler.getMaterialName(this.tempItem))) {
 			if (this.legacySecret != null && !ServerUtils.hasSpecificUpdate("1_14")) {
 				final String itemData = this.tempMeta.getDisplayName();
-				this.tempMeta.setDisplayName(StringUtils.translateLayout(ItemHandler.cutDelay(this.customName), player) + "งr" + itemData);
+				this.tempMeta.setDisplayName(StringUtils.translateLayout(ItemHandler.cutDelay(this.customName), player) + "ยงr" + itemData);
 			} else {
 				this.tempMeta.setDisplayName(StringUtils.translateLayout(ItemHandler.cutDelay(this.customName), player));
 			}
@@ -4272,6 +4272,7 @@ public class ItemMap {
 			this.tempMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_PLACED_ON);
 			this.tempMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_POTION_EFFECTS);
 			this.tempMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_UNBREAKABLE);
+			this.tempMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_DYE);
 		}
 	}
 //  =========================================================================================================================================================== //	
@@ -5145,7 +5146,7 @@ public class ItemMap {
 		if (this.durability != null && this.durability > 0) { itemData.set("items." + this.configName + ".durability", this.durability); }
 		if (this.data != null && this.data > 0) { itemData.set("items." + this.configName + ".data", this.data); }
 		if (this.modelData != null && this.modelData > 0) { itemData.set("items." + this.configName + ".model-data", this.modelData); }
-		if (this.author != null && !this.author.isEmpty()) { itemData.set("items." + this.configName + ".author", this.author.replace("ง", "&")); }
+		if (this.author != null && !this.author.isEmpty()) { itemData.set("items." + this.configName + ".author", this.author.replace("ยง", "&")); }
 		if (this.customName != null && !this.customName.isEmpty() && (this.dynamicNames == null || this.dynamicNames.isEmpty())) { 
 			String setName = null;
 			if (this.legacySecret != null && !ServerUtils.hasSpecificUpdate("1_14")) {
@@ -5154,9 +5155,9 @@ public class ItemMap {
 				this.tempItem.setItemMeta(itemMeta);
 				StringUtils.colorEncode(this.tempItem, this.legacySecret);
 				final String itemInfo = this.tempItem.getItemMeta().getDisplayName();
-				setName = this.customName.replace(itemInfo, "").replace("ง", "&");
+				setName = this.customName.replace(itemInfo, "").replace("ยง", "&");
 			} else {
-				setName = this.customName.replace("ง", "&");
+				setName = this.customName.replace("ยง", "&");
 			}
 			if (setName.startsWith("&f") && (!ItemHandler.dataTagsEnabled() || !ServerUtils.hasSpecificUpdate("1_8"))) { setName = setName.substring(2, setName.length()); }
 				if (!ItemHandler.getMaterialName(this.tempItem).equalsIgnoreCase(setName)) { 
@@ -5165,7 +5166,7 @@ public class ItemMap {
 			}
 		else if (this.dynamicNames != null && !this.dynamicNames.isEmpty()) { 
 			for (int i = 0; i < this.dynamicNames.size(); i++) {
-				itemData.set("items." + this.configName + ".name." + (i + 1), this.dynamicNames.get(i).replace("ง", "&")); 	
+				itemData.set("items." + this.configName + ".name." + (i + 1), this.dynamicNames.get(i).replace("ยง", "&")); 	
 			}
 		}
 		if (this.customLore != null && !this.customLore.isEmpty() && (this.dynamicLores == null || this.dynamicLores.isEmpty())) { itemData.set("items." + this.configName + ".lore", this.customLore); }
@@ -5173,7 +5174,7 @@ public class ItemMap {
 			for (int i = 0; i < this.dynamicLores.size(); i++) {
 				List <String> lores = this.dynamicLores.get(i);
 				for (int k = 0; k < lores.size(); k++) {
-					lores.get(k).replace("ง", "&");
+					lores.get(k).replace("ยง", "&");
 				}
 				itemData.set("items." + this.configName + ".lore." + (i + 1), lores); 	
 			}
@@ -5182,7 +5183,7 @@ public class ItemMap {
 			for (int i = 0; i < this.listPages.size(); i++) {
 				List <String> pages = this.listPages.get(i);
 				for (int k = 0; k < pages.size(); k++) {
-					pages.get(k).replace("ง", "&");
+					pages.get(k).replace("ยง", "&");
 				}
 				itemData.set("items." + this.configName + ".pages." + (i + 1), pages); 	
 			}
